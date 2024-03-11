@@ -29,4 +29,12 @@ public class BeerClient {
     public URI saveNew(BeerDto beerDto) {
         return restTemplate.postForLocation(apiHost + BEER_URL_PATH, beerDto);
     }
+
+    public void update(UUID id, BeerDto beerDto){
+        restTemplate.put(apiHost+BEER_URL_PATH+id, beerDto);
+    }
+
+    public void delete(UUID id){
+        restTemplate.delete(apiHost+BEER_URL_PATH+id);
+    }
 }
