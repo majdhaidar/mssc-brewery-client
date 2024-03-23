@@ -17,7 +17,8 @@ import java.util.UUID;
 public class CustomerClient {
     @Setter
     private String apiHost;
-    private final String CUSTOMER_URL_PATH = "/api/v1/customer/";
+    @Setter
+    private String customerUrlPath;
     private final RestTemplate restTemplate;
 
     public CustomerClient(RestTemplateBuilder restTemplateBuilder) {
@@ -25,18 +26,18 @@ public class CustomerClient {
     }
 
     public CustomerDto getCustomerById(UUID id) {
-        return restTemplate.getForObject(apiHost + CUSTOMER_URL_PATH + id, CustomerDto.class);
+        return restTemplate.getForObject(apiHost + customerUrlPath + id, CustomerDto.class);
     }
 
     public URI saveNew(CreateCustomerDTO createCustomerDTO) {
-        return restTemplate.postForLocation(apiHost + CUSTOMER_URL_PATH, createCustomerDTO);
+        return restTemplate.postForLocation(apiHost + customerUrlPath, createCustomerDTO);
     }
 
     public void update(UUID id, UpdateCustomerReqDTO updateCustomerReqDTO) {
-        restTemplate.put(apiHost + CUSTOMER_URL_PATH + id, updateCustomerReqDTO);
+        restTemplate.put(apiHost + customerUrlPath + id, updateCustomerReqDTO);
     }
 
     public void delete(UUID id) {
-        restTemplate.delete(apiHost + CUSTOMER_URL_PATH + id);
+        restTemplate.delete(apiHost + customerUrlPath + id);
     }
 }
