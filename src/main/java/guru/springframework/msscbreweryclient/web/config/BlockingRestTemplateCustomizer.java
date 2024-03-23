@@ -11,6 +11,12 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Below configuration will save us time in initializing new requests per request
+ * with pooling we will be able to use existing initialized requests
+ * which will lower time for creating new requests each time
+ *
+ */
 @Component
 public class BlockingRestTemplateCustomizer implements RestTemplateCustomizer {
 
